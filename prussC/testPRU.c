@@ -1,50 +1,42 @@
-/** Basic PRU C program to flash an LED that is attached to P9_27 at a
-*   frequency of 10 Hz, until a button that is attached to P9_28 is pressed
-*   you must load the device tree overlay in advance
-* Written by Derek Molloy for the book "Exploring BeagleBone: Tools and
-* Techniques for Building with Embedded Linux" by John Wiley & Sons, 2014
-* ISBN 9781118935125. Please see the file README.md in the repository root
-* directory for copyright and GNU GPLv3 license information.            */
+/** based on programs written by Derek Molloy
+licensed with GNU GPLv3 license */
 
-/* the registers for I/O and interrupts */
 volatile register unsigned int __R31, __R30;
 
-unsigned int i;                  // the counter in the time delay
-unsigned int j;                  // the counter in the time delay
-unsigned int delay = 2;     // the delay (manually determined)
-
+unsigned int i;                 //sample counter
+unsigned int samples = 0;	//number of samples
+unsigned d = 0;
+unsigned int delay = 1;
 int main()
 {
-   // Just a test to show how you can use assembly instructions directly
-   // subtract 1 from REG1
-   __asm__ __volatile__
-   (
-      " SUB r1, r1, 1 \n"
-   );
+   //pointer to start of memory location
+   unsigned int *p = 0x00000000;
+   //read number of samples
+   samples = p[0];
 
-   // while the button r31.3 has not been pressed, keep looping
 	while(1)
 	{
-		for( j=0; j<16; j++)
+		//for each sample
+		for( i=1; i<samples+1; i++)
 		{
-			      __R30 = j; // bit mask this
+		      //unpack the byte values and write on the register
+		      __R30 = (0xFF00 & p[i]) >> 8;
+		      //delay
+		      d ++;
+		      d ++;
+		      d ++;
+		      d ++;
+		      d ++;
+		      //delay
+		      __R30 = (0x00FF & p[i]);
+		      d ++;
+		      d ++;
+		      d ++;
+		      d ++;
+		      d ++;
 		}
 	}
-/*
-   while(!(__R31 & 1<<3)){
-      __R30 = __R30 | 1<<3;         // turn on the LED r30.5
-      __R30 = __R30 | 1<<2;         // turn on the LED r30.5
-      __R30 = __R30 | 1<<1;         // turn on the LED r30.5
-      __R30 = __R30 | 1<<0;         // turn on the LED r30.5
-//      for(i=0; i<delay; i++) {}     // sleep for the delay
-      __R30 = __R30 & 0<<3;         // turn off the LED r30.5
-      __R30 = __R30 & 0<<2;         // turn off the LED r30.5
-      __R30 = __R30 & 0<<1;         // turn off the LED r30.5
-      __R30 = __R30 & 0<<0;         // turn off the LED r30.5
- //     for(i=0; i<delay; i++) {}     // sleep for the delay
-   }
 
-*/
    // Exiting the application - send the interrupt
    __R31 = 35;                      // PRUEVENT_0 on PRU0_R31_VEC_VALID
    __halt();                        // halt the PRU
