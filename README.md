@@ -15,6 +15,14 @@ first 8 bits of the PRU gpio bus:
 * p6 p9_41
 * p7 p9_25
 
+connect to the R2R ladder:
+
+![r2r dac](8bitdac.jpg)
+
+Image thanks to [www.ikalogic.com](http://www.ikalogic.com)
+
+I didn't use the opamp buffer.
+
 ## setup
 
 ### Disable HDMI to enable loading of PRU overlay
