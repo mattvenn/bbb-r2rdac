@@ -4,7 +4,9 @@ uses the PRU to generate a waveform at up to 2MHz.
 
 ![scope screenshot](r2rDAC.png)
 
-## connections
+# Setup
+
+## Electrical connections
 
 first 8 bits of the PRU gpio bus:
 
@@ -23,9 +25,11 @@ connect to the r2r ladder:
 
 Image thanks to [www.ikalogic.com](http://www.ikalogic.com)
 
-I didn't use the opamp buffer.
+* I used 20k and 10k resistors
+* I didn't use the opamp buffer.
+* [Recommended part](http://uk.farnell.com/bourns/4310r-101-103lf/resistor-network-10kr/dp/1612538)
 
-## setup
+## Software setup
 
 ### Disable HDMI to enable loading of PRU overlay
 
@@ -59,3 +63,13 @@ Python code generates a 4000 sample saw tooth
     ./load_data
 
 Now there should be a 3.3v peak to peak ~640Hz sawtooth waveform on the end of the r2r DAC.
+
+# Project log
+
+more [detailed notes here](log.md)
+
+# Attribution
+
+Many thanks to [excellent resource](http://www.exploringbeaglebone.com/) by
+Derek Molloy.
+
