@@ -6,6 +6,7 @@ licensed with GNU GPLv3 license */
 #include <prussdrv.h>
 #include <pruss_intc_mapping.h>
 
+const int offset = 256;
 #define PRU_NUM 	0
 static void *pru0DataMemory;
 static unsigned int *pru0DataMemory_int;
@@ -46,7 +47,7 @@ int main (void)
    }
 
 //pack the byte values into int data structure for transfer
-   unsigned int numbersamples = 16;  //number of samples
+   unsigned int numbersamples = 1024;  //number of samples
    int waveform[numbersamples/2];
 	int j = 0;
    for (i=0; i<numbersamples/2; i++){
@@ -63,7 +64,7 @@ int main (void)
    *(pru0DataMemory_int) = numbersamples/2;
    // copy the waveform data into PRU memory
    for (i=0; i<numbersamples/2; i++){
-      *(pru0DataMemory_int+1+i) = waveform[i];
+      *(pru0DataMemory_int+offset+i) = waveform[i];
    }
 
    /* Map PRU's INTC */

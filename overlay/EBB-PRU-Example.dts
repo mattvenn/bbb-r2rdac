@@ -21,7 +21,6 @@
    fragment@0 {
       target = <&am33xx_pinmux>;
       __overlay__ {
-
          gpio_pins: pinmux_gpio_pins {         // The GPIO pins
             pinctrl-single,pins = <
                0x070 0x07  // P9_11 MODE7 | OUTPUT | GPIO pull-down
@@ -31,16 +30,14 @@
 
          pru_pru_pins: pinmux_pru_pru_pins {   // The PRU pin modes
             pinctrl-single,pins = <
-/*
-               0x1a4 0x05  // P9_27 pr1_pru0_pru_r30_5, MODE5 | OUTPUT | PRU
-               0x19c 0x05  // P9_28 pr1_pru0_pru_r31_3, MODE6 | INPUT | PRU
-               0x198 0x05  // P9_30 
-*/
-               0x1a4 0x05  // P9_27 pr1_pru0_pru_r30_5, MODE5 | OUTPUT | PRU
-	0x19c 0x25	/* mcasp0_ahclkr.pr1_pru0_pru_r30_3, MODE5 | OUTPUT | PRU */
-	0x198 0x25	/* mcasp0_axr0.pr1_pru0_pru_r30_2, MODE5 | OUTPUT | PRU */
-	0x194 0x25	/* mcasp0_fsx.pr1_pru0_pru_r30_1, MODE5 | OUTPUT | PRU */
-	0x190 0x25	/* mcasp0_aclkx.pr1_pru0_pru_r30_0, MODE5 | OUTPUT | PRU */
+	0x190 0x25	// p0 p9_31
+	0x194 0x25	// p1 p9_29
+	0x198 0x25	// p2 p9_30
+	0x19c 0x25	// p3 p9_28
+        0x1a0 0x25	// p4 p9_42
+        0x1a4 0x25	// p5 p9_27
+        0x1a8 0x25	// p6 p9_41
+        0x1ac 0x25	// p7 p9_25
 
 
             >;
