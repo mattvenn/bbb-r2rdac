@@ -1,6 +1,8 @@
 # BBB R2R DAC
 
-uses the PRU to generate a waveform at 2mhz.
+uses the PRU to generate a waveform at up to 2MHz.
+
+![scope screenshot](r2rDAC.png)
 
 ## connections
 
@@ -15,7 +17,7 @@ first 8 bits of the PRU gpio bus:
 * p6 p9_41
 * p7 p9_25
 
-connect to the R2R ladder:
+connect to the r2r ladder:
 
 ![r2r dac](8bitdac.jpg)
 
@@ -56,4 +58,4 @@ Python code generates a 4000 sample saw tooth
 
     ./load_data
 
-Now there should be a 3.3v peak to peak ~640Hz sawtooth waveform on the end of the R2R DAC.
+Now there should be a 3.3v peak to peak ~640Hz sawtooth waveform on the end of the r2r DAC.
