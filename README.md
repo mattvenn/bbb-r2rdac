@@ -37,8 +37,15 @@ There should be no error after the last command.
 
     cd prussC
     ./build
-    ./test
 
-Now there should be a 3.3v peak to peak 22kHz sawtooth waveform on the end of the R2R DAC.
+### Generate a datafile
 
-### Load a new datafile
+Python code generates a 4000 sample saw tooth
+
+    ./generate_saw.py
+
+### Load the datafile
+
+    ./load_data
+
+Now there should be a 3.3v peak to peak ~640Hz sawtooth waveform on the end of the R2R DAC.

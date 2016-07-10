@@ -68,6 +68,10 @@ got a 4 bit counter working at 7mhz as a proof of concept for DAC control.
 
 # built a resistor ladder network
 
+found it's possible to get r2r networks off the shelf:
+http://uk.farnell.com/bourns/4310r-101-103lf/resistor-network-10kr/dp/1612538
+
+
 ![r2r](r2rDAC.png)
 
 * http://www.tek.com/blog/tutorial-digital-analog-conversion-%E2%80%93-r-2r-dac
@@ -78,3 +82,7 @@ got a 4 bit counter working at 7mhz as a proof of concept for DAC control.
 
 http://elinux.org/Ti_AM33XX_PRUSSv2#PRU_to_external_peripherals
 
+
+# load datafile
+
+generate with a python file, load the data with the load_data C file.
