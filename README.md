@@ -2,7 +2,7 @@
 
 uses the PRU to generate a waveform at up to 2MHz.
 
-![scope screenshot](r2rDAC.png)
+![scope screenshot](r2rDAC-8bit.png)
 
 # Setup
 
