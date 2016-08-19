@@ -1,7 +1,8 @@
 #!/bin/sh
 
 echo "Compiling the testPRU.c application"
-clpru --silicon_version=3 testPRU.c -z AM3359_PRU.cmd -o testPRU.out -m testPRU.map
+clpru -i /usr/share/ti/cgt-pru/lib/ --silicon_version=3 testPRU.c -z AM3359_PRU.cmd -o testPRU.out -m testPRU.map 
+
 
 echo "Converting the executable to a ARM object file"
 hexpru bin.cmd testPRU.out
