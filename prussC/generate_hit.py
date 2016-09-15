@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import argparse
 samples_per_us = 0.2647
-mvolts_per_bit = 3420.0 / 256 # should be 3300 but this bbb measures at 3.42v
+mvolts_per_bit = 3400.0 / 256 # should be 3300 but this bbb measures at 3.42v
 
 parser = argparse.ArgumentParser(description="generate hit test data")
 parser.add_argument('--zero-val', action='store', type=int, help="zero value (mv)", default=0)
@@ -28,8 +28,18 @@ while True:
         val -= args.hit_slope
         if val < args.zero_val:
             break
+    # clamp
+    if val > 255:
+        val = 255
+    if val < 0:
+        val = 0
     samples.append(val)
-		
+	
+# pad with zeros, and ensure
+# samples must be even number long
+for pad in range(len(samples) % 2 + 50):
+    samples.append(args.zero_val)
+
 # check signal is short enough
 assert len(samples) < 7500 
 with open("data.txt", 'w') as fh:

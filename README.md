@@ -27,7 +27,7 @@ Image thanks to [www.ikalogic.com](http://www.ikalogic.com)
 
 * I used 20k and 10k resistors
 * I didn't use the opamp buffer.
-* [Recommended part](http://uk.farnell.com/bourns/4310r-101-103lf/resistor-network-10kr/dp/1612538)
+* [Recommended part](http://uk.farnell.com/bourns/4310r-r2r-103lf/resistor-ladder-n-w-10-10kohm/dp/2112797?ost=bourns+r2r&selectedCategoryId=&categoryNameResp=All%2BCategories&searchView=table&iscrfnonsku=false)
 
 ## Software setup
 
@@ -38,6 +38,18 @@ Edit /boot/uEnv, change line 47 to disable HDMI:
     ##Disable HDMI (v3.8.x)
     cape_disable=capemgr.disable_partno=BB-BONELT-HDMI,BB-BONELT-HDMIN
 
+Reboot, and check slots:
+
+    cat /sys/devices/bone_capemgr.9/slots
+
+Showing only last 2 lines:
+
+    5: ff:P-O-- Bone-Black-HDMI,00A0,Texas Instrument,BB-BONELT-HDMI
+    6: ff:P-O-- Bone-Black-HDMIN,00A0,Texas Instrument,BB-BONELT-HDMIN
+
+* ff:P-O-- = Disabled
+* ff:P-O-L = Enabled
+
 ### Build, copy the overlay and add it to slots
 
     cd overlay
@@ -46,6 +58,13 @@ Edit /boot/uEnv, change line 47 to disable HDMI:
     echo EBB-PRU-Example > /sys/devices/bone_capemgr.9/slots 
 
 There should be no error after the last command.
+
+    cat /sys/devices/bone_capemgr.9/slots
+
+Showing last line:
+
+    7: ff:P-O-L Override Board Name,00A0,Override Manuf,EBB-PRU-Example
+
 
 ### Build and test PRU code
 
