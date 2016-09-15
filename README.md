@@ -52,10 +52,9 @@ Showing only last 2 lines:
 
 ### Build, copy the overlay and add it to slots
 
-    cd overlay
-    ./build
-    cp EBB-PRU-Example-00A0.dtbo /lib/firmware/
-    echo EBB-PRU-Example > /sys/devices/bone_capemgr.9/slots 
+    cd src
+    ./make install
+    echo r2r-dac > /sys/devices/bone_capemgr.9/slots 
 
 There should be no error after the last command.
 
@@ -68,8 +67,8 @@ Showing last line:
 
 ### Build and test PRU code
 
-    cd prussC
-    ./build
+    cd src
+    make
 
 ### Generate a datafile
 

@@ -29,6 +29,8 @@ then works ok:
 
 got the c compiler for the pru working on bbb. Couldn't find cmd.bin, found it on the internet.
 
+http://software-dl.ti.com/codegen/esd/cgt_public_sw/PRU/2.1.2/ti_cgt_pru_2.1.2_armlinuxa8hf_busybox_installer.sh
+
 # controlling other gpios
 
 can only control p30.5  (port 9 pin 27). To do with overlays I think. Tried the universal overlay but that doesn't seem to work. Perhaps pru not enabled?
@@ -82,7 +84,18 @@ http://uk.farnell.com/bourns/4310r-101-103lf/resistor-network-10kr/dp/1612538
 
 http://elinux.org/Ti_AM33XX_PRUSSv2#PRU_to_external_peripherals
 
+looks like pru pins need to be set to pruout with config-pin or somehow else
+configured to be connected to pru.
+
+I used 
+https://github.com/cdsteinkuehler/beaglebone-universal-io
+
+config-pin p9-31 pruout
+
+which worked to set the one pin, not sure how it worked before.
+just running the overlay in the repo doesn't work. the pins also need to be set
 
 # load datafile
 
 generate with a python file, load the data with the load_data C file.
+
