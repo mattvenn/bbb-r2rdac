@@ -14,7 +14,7 @@ int main()
   unsigned int *p = 0x00000000;
   //read number of samples
   samples = p[0];
-  while(1)
+//  while(1)
   {
     for( i=OFFSET; i<samples+OFFSET; i++)
     {
