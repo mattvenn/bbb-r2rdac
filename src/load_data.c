@@ -113,11 +113,8 @@ int main (void)
   /* Map PRU's INTC */
   prussdrv_pruintc_init(&pruss_intc_initdata);
 
-  /* Load the memory data file -- what is this? */
-  // prussdrv_load_datafile(PRU_NUM, "./data.bin");
-
   /* Load and execute binary on PRU */
-  prussdrv_exec_program (PRU_NUM, "./text.bin");
+  prussdrv_exec_program (PRU_NUM, "./dac.bin");
 
   /* Wait for event completion from PRU */
   n = prussdrv_pru_wait_event (PRU_EVTOUT_0);  // This assumes the PRU generates an interrupt
